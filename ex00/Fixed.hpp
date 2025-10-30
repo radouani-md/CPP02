@@ -11,15 +11,11 @@ class Fixed
     public :
         Fixed();
         Fixed(const Fixed &obj);
+        Fixed &operator = (const Fixed &obj);
         ~Fixed();
-        void setNb(int nb)
-        {
-            fixedPointNb = nb;
-        }
-        void print()
-        {
-            std::cout << fixedPointNb << std::endl;
-        }
+        
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
 };
 
 
