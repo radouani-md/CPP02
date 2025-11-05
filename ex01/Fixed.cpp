@@ -43,7 +43,7 @@ void Fixed::setRawBits( int const raw) { this->fixedPointNb = raw; }
 
 float   Fixed::toFloat( void ) const
 {
-    return (fixedPointNb / (1 << bitsNb));
+    return ((float)(fixedPointNb) / (1 << bitsNb));
 }
 
 int     Fixed::toInt( void ) const
@@ -53,7 +53,7 @@ int     Fixed::toInt( void ) const
 
 std::ostream& operator<<(std::ostream& output, const Fixed &obj)
 {
-    output << obj.getRawBits();
+    output << obj.toFloat();
     return (output);
 }
 
