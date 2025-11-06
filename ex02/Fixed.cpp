@@ -61,31 +61,3 @@ Fixed::~Fixed()
 {
     std::cout << "Destractor Called" << std::endl;
 }
-
-Fixed& Fixed::min(Fixed &a, Fixed &b)
-{
-    if (a.toFloat() < b.toFloat())
-        return (a);
-    return (b);
-}
-
-const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
-{
-    if (a.toFloat() < b.toFloat())
-        return (a);
-    return (b);
-}
-
-Fixed& Fixed::max(Fixed &a, Fixed &b)
-{
-    if (a.toFloat() > b.toFloat())
-        return (a);
-    return (b);
-}
-
-const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
-{
-    if (a.toFloat() > b.toFloat())
-        return (a);
-    return (b);
-}
