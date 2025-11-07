@@ -9,7 +9,7 @@ Fixed::Fixed() : fixedPointNb(0)
 
 Fixed::Fixed(const float nb)
 {
-    fixedPointNb =  round(nb * (1 << bitsNb));
+    fixedPointNb =  roundf(nb * (1 << bitsNb));
     std::cout << "Float Constractor Called" << std::endl;
 }
 
@@ -60,32 +60,4 @@ std::ostream& operator<<(std::ostream& output, const Fixed &obj)
 Fixed::~Fixed()
 {
     std::cout << "Destractor Called" << std::endl;
-}
-
-Fixed& Fixed::min(Fixed &a, Fixed &b)
-{
-    if (a.toFloat() < b.toFloat())
-        return (a);
-    return (b);
-}
-
-const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
-{
-    if (a.toFloat() < b.toFloat())
-        return (a);
-    return (b);
-}
-
-Fixed& Fixed::max(Fixed &a, Fixed &b)
-{
-    if (a.toFloat() > b.toFloat())
-        return (a);
-    return (b);
-}
-
-const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
-{
-    if (a.toFloat() > b.toFloat())
-        return (a);
-    return (b);
 }

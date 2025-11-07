@@ -61,3 +61,109 @@ Fixed::~Fixed()
 {
     std::cout << "Destractor Called" << std::endl;
 }
+
+
+
+
+Fixed& Fixed::min(Fixed &a, Fixed &b)
+{
+    if (a < b)
+        return (a);
+    return (b);
+}
+
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
+{
+    if (a < b)
+        return (a);
+    return (b);
+}
+
+Fixed& Fixed::max(Fixed &a, Fixed &b)
+{
+    if (a > b)
+        return (a);
+    return (b);
+}
+
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
+{
+    if (a.getRawBits() > b.getRawBits())
+        return (a);
+    return (b);
+}
+
+bool    Fixed::operator<(const Fixed &obj) const
+{
+    return (fixedPointNb < obj.fixedPointNb);
+}
+bool    Fixed::operator>(const Fixed &obj) const
+{
+    return (fixedPointNb > obj.fixedPointNb);
+}
+bool    Fixed::operator>=(const Fixed &obj) const
+{
+    return (fixedPointNb >= obj.fixedPointNb);
+}
+bool    Fixed::operator<=(const Fixed &obj) const
+{
+    return (fixedPointNb <= obj.fixedPointNb);
+}
+bool    Fixed::operator==(const Fixed &obj) const
+{
+    return (fixedPointNb == obj.fixedPointNb);
+}
+bool    Fixed::operator!=(const Fixed &obj) const
+{
+    return (fixedPointNb != obj.fixedPointNb);
+}
+
+
+Fixed  Fixed::operator+(const Fixed &obj) const
+{
+    Fixed result;
+    result.setRawBits(obj.fixedPointNb + fixedPointNb);
+    return (result);
+}
+
+Fixed  Fixed::operator-(const Fixed &obj) const
+{
+    Fixed result;
+    result.setRawBits(obj.fixedPointNb - fixedPointNb);
+    return (result);
+}
+Fixed  Fixed::operator*(const Fixed &obj) const
+{
+    Fixed result;
+    long res = obj.fixedPointNb;
+    result.setRawBits((res * fixedPointNb) >> bitsNb);
+    return (result);
+}
+Fixed  Fixed::operator/(const Fixed &obj) const
+{
+    Fixed result;
+    long res = fixedPointNb * (1 << bitsNb);
+    result.setRawBits(res / obj.fixedPointNb);
+    return (result);
+}
+
+Fixed&   Fixed::operator++()
+{
+    fixedPointNb++;
+    return (*this);
+}
+Fixed   Fixed::operator++(int)
+{
+    ++fixedPointNb;
+    return(*this);
+}
+Fixed&   Fixed::operator--()
+{
+    fixedPointNb--;
+    return (*this);
+}
+Fixed   Fixed::operator--(int)
+{
+    --fixedPointNb;
+    return (*this);
+}
