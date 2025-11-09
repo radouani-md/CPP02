@@ -2,21 +2,27 @@
 
 const int Fixed::bitsNb = 8;
 
-Fixed::Fixed() : fixedPointNb(0) {}
+Fixed::Fixed() : fixedPointNb(0)
+{
+    // std::cout << "Default Constractor Called" << std::endl;
+}
 
 Fixed::Fixed(const float nb)
 {
-    fixedPointNb =  roundf(nb * (1 << bitsNb));
+    fixedPointNb =  round(nb * (1 << bitsNb));
+    // std::cout << "Float Constractor Called" << std::endl;
 }
 
 Fixed::Fixed(const int nb)
 {
     fixedPointNb = nb << bitsNb;
+    // std::cout << "Int Constractor Called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &obj)
 {
     *this = obj;
+    // std::cout << "Copy Constractor Called" << std::endl;
 }
 
 
@@ -24,10 +30,15 @@ Fixed &Fixed::operator=(const Fixed &obj)
 {
     if (this != &obj)
         this->fixedPointNb = obj.getRawBits();
+    // std::cout << "Copy Assignement Operator Called" << std::endl;
     return (*this);
 }
 
-int Fixed::getRawBits( void ) const { return (fixedPointNb); }
+int Fixed::getRawBits( void ) const
+{
+    // std::cout << "getRawBits member function called" << std::endl;
+    return (fixedPointNb);
+}
 void Fixed::setRawBits( int const raw) { this->fixedPointNb = raw; }
 
 float   Fixed::toFloat( void ) const
@@ -50,6 +61,8 @@ Fixed::~Fixed()
 {
     // std::cout << "Destractor Called" << std::endl;
 }
+
+
 
 
 Fixed& Fixed::min(Fixed &a, Fixed &b)
@@ -75,7 +88,7 @@ Fixed& Fixed::max(Fixed &a, Fixed &b)
 
 const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
 {
-    if (a > b)
+    if (a.getRawBits() > b.getRawBits())
         return (a);
     return (b);
 }
